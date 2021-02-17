@@ -1,105 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-        <ProjectGuid>{B9C021F1-E7CE-43C7-AB01-0A8B7B60ACE0}</ProjectGuid>
-        <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <OutputType>Exe</OutputType>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{0A15633F-F949-4E0F-8544-8E4B294879C3}</ProjectGuid>
+        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace>UnitTests</RootNamespace>
         <AssemblyName>UnitTests</AssemblyName>
-        <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <Optimize>false</Optimize>
-        <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-        <DefineConstants>DEBUG;</DefineConstants>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <MtouchDebug>true</MtouchDebug>
-        <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-        <MtouchFastDev>true</MtouchFastDev>
-        <IOSDebuggerPort>13383</IOSDebuggerPort>
-        <MtouchLink>None</MtouchLink>
-        <MtouchArch>x86_64</MtouchArch>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
-        <OutputPath>bin\iPhone\Release</OutputPath>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <MtouchUseLlvm>true</MtouchUseLlvm>
-        <MtouchFloat32>true</MtouchFloat32>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <MtouchLink>SdkOnly</MtouchLink>
-        <MtouchArch>ARM64</MtouchArch>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <PlatformTarget>x86</PlatformTarget>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-        <MtouchLink>None</MtouchLink>
-        <MtouchArch>x86_64</MtouchArch>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <PlatformTarget>x86</PlatformTarget>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\iPhone\Debug</OutputPath>
-        <DefineConstants>DEBUG;</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <CodesignKey>iPhone Developer</CodesignKey>
-        <DeviceSpecificBuild>true</DeviceSpecificBuild>
-        <MtouchDebug>true</MtouchDebug>
-        <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-        <MtouchFastDev>true</MtouchFastDev>
-        <MtouchFloat32>true</MtouchFloat32>
-        <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <IOSDebuggerPort>14125</IOSDebuggerPort>
-        <MtouchLink>SdkOnly</MtouchLink>
-        <MtouchArch>ARM64</MtouchArch>
-        <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-        <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>..\packages\Newtonsoft.Json.13.0.1-beta1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="System" />
-        <Reference Include="System.Xml" />
         <Reference Include="System.Core" />
-        <Reference Include="Xamarin.iOS" />
-        <Reference Include="MonoTouch.NUnitLite" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
+        <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+            <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
-        <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="Info.plist" />
-        <None Include="Entitlements.plist" />
-        <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Main.cs" />
         <Compile Include="CreatingFileTests.cs" />
-        <Compile Include="UnitTestAppDelegate.cs" />
+        <Compile Include="ManagingShoppingListTests.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ShoppingListApp\ShoppingListApp.csproj">
@@ -107,5 +56,16 @@
         <Name>ShoppingListApp</Name>
       </ProjectReference>
     </ItemGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
 </Project>

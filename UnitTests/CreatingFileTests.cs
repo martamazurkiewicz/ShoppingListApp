@@ -11,7 +11,7 @@ namespace UnitTests
         [TestCase]
         public void CreateNewFile()
         {
-            var shoppingListFile = new ShoppingListFile();
+            var shoppingListFile = new ShoppingList();
             List<Product> products = shoppingListFile.GetProducts();
             Assert.AreEqual(new List<Product>(), products);
         }
@@ -26,7 +26,7 @@ namespace UnitTests
                 new Product("coffee", new Category("super market"))
             };
             CreateJsonFile(path, products);
-            var shoppingListFile = new ShoppingListFile(path);
+            var shoppingListFile = new ShoppingList(path);
             Assert.AreEqual(products, shoppingListFile.GetProducts());
         }
 
@@ -34,7 +34,10 @@ namespace UnitTests
         public void CreateNewFileWhenFileAlreadyExists()
         {
             CreateJsonFile("shoppingList.txt", new List<Product>());
-            Assert.Throws<FileAreadyExistsException>(() => new ShoppingListFile());
+            Assert.Throws<FileAreadyExistsException>(() =>
+            {
+                new ShoppingList();
+            });
         }
         
         private void CreateJsonFile(string path, List<Product> products)
