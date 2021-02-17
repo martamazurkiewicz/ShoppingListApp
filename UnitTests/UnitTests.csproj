@@ -98,7 +98,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main.cs" />
-        <Compile Include="ShoppingListFileTests.cs" />
+        <Compile Include="CreatingFileTests.cs" />
         <Compile Include="UnitTestAppDelegate.cs" />
     </ItemGroup>
     <ItemGroup>
