@@ -78,6 +78,10 @@
         <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1-beta1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Xml" />
         <Reference Include="System.Core" />
@@ -90,11 +94,18 @@
     <ItemGroup>
         <None Include="Info.plist" />
         <None Include="Entitlements.plist" />
+        <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="ShoppingListFileTests.cs" />
         <Compile Include="UnitTestAppDelegate.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ShoppingListApp\ShoppingListApp.csproj">
+        <Project>{5ae8c368-2d28-4a6e-8710-89738e8c5b03}</Project>
+        <Name>ShoppingListApp</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
