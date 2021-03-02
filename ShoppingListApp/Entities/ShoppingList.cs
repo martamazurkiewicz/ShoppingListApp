@@ -2,11 +2,11 @@
 
 namespace ShoppingListApp.Entities
 {
-    public class ShoppingListFile
+    public class ShoppingList
     {
         private List<Category> _categories;
 
-        public ShoppingListFile()
+        public ShoppingList()
         {
             _categories = new List<Category>();
         }

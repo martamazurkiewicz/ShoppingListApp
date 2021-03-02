@@ -128,7 +128,7 @@
     <ItemGroup>
         <Compile Include="Entities\Category.cs" />
         <Compile Include="Entities\Product.cs" />
-        <Compile Include="Entities\ShoppingListFile.cs" />
+        <Compile Include="Entities\ShoppingList.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
         <Compile Include="SceneDelegate.cs" />
