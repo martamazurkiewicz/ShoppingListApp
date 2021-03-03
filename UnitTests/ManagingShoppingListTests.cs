@@ -23,14 +23,14 @@ namespace UnitTests
                 File.Delete(file);
         }
 
-        [TestCase("market")]
+        [TestCase("supermarket")]
         [TestCase("Amazon")]
         [TestCase("drugstore")]
         [TestCase("Decathlon")]
         public void AddCategoryTest(string name)
         {
             _shoppingList.AddCategory(name);
-            Assert.Contains(new Category(name), _shoppingList.GetCategories());
+            CollectionAssert.Contains(_shoppingList.GetCategories(), new Category(name));
         }
 
         [TestCase("Vinted")]
@@ -41,35 +41,44 @@ namespace UnitTests
             CollectionAssert.DoesNotContain(_shoppingList.GetCategories(), new Category(name));
         }
         
-        [TestCase("market")]
+        [TestCase("supermarket")]
         [TestCase("Amazon")]
         public void GetCategoryTest(string name)
         {
-            var category = _shoppingList.GetCategory(categoryName);
+            var category = _shoppingList.GetCategory(name);
             Assert.AreEqual(new Category(name), category);
         }
 
-        [TestCase("almond flour", "market")]
-        [TestCase("apricots", "market")]
+        [TestCase("almond flour", "supermarket")]
+        [TestCase("apricots", "supermarket")]
         [TestCase("bandages", "drugstore")]
         [TestCase("Grand Tour Season 2 DVD", "Amazon")]
+        [TestCase("protein bars", "Decathlon")]
         public void AddProductTest(string name, string categoryName)
         {
             var category = _shoppingList.GetCategory(categoryName);
-            var product = new Product(name);
             _shoppingList.AddProduct(name, category);
-            Assert.Contains(product, _shoppingList.GetProductsWithCategory(category));
+            CollectionAssert.Contains(_shoppingList.GetProductNames(category), name);
         }
-        
+
+        [TestCase("supermarket", "market")]
+        public void UpdateCategoryTest(string oldName, string newName)
+        {
+            var category = _shoppingList.GetCategory(oldName);
+            var productNames = _shoppingList.GetProductNames(category);
+            category.UpdateCategory(newName);
+            category = _shoppingList.GetCategory(newName);
+            CollectionAssert.AreEquivalent(productNames, _shoppingList.GetProductNames(category));
+        }
+
         [TestCase("protein powder", "Decathlon")]
         [TestCase("apples", "market")]
         public void RemoveProductTest(string name, string categoryName)
         {
             var category = _shoppingList.GetCategory(categoryName);
-            var product = new Product(name);
-            _shoppingList.AddProduct(name, category);
-            _shoppingList.RemoveProduct(name, category);
-            CollectionAssert.DoesNotContain(_shoppingList.GetProductsWithCategory(category), product);
+            _shoppingList.AddProduct(category, name);
+            _shoppingList.RemoveProduct(category, name);
+            CollectionAssert.DoesNotContain(_shoppingList.GetProductNames(category), name);
         }
 
         [TestCase("protein bars", "Decathlon", "market")]
@@ -77,10 +86,10 @@ namespace UnitTests
         public void ChangeProductCategoryTest(string name, string oldCategoryName, string newCategoryName)
         {
             var oldCategory = _shoppingList.GetCategory(oldCategoryName);
-            var category = _shoppingList.GetCategory(oldCategoryName);
-            var product = new Product(name, category);
-            _shoppingList.ChangeProductsCategory(oldCategory);
-            _shoppingList.RemoveProduct(product);
+            var newCategory = _shoppingList.GetCategory(newCategoryName);
+            _shoppingList.ChangeProductCategory(name, oldCategory, newCategory);
+            CollectionAssert.DoesNotContain(_shoppingList.GetProductNames(oldCategory), name);
+            CollectionAssert.Contains(_shoppingList.GetProductsNames(newCategory), name);
         }
 
         
