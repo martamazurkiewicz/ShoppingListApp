@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using ShoppingListApp.Entities;
@@ -31,6 +31,21 @@ namespace UnitTests
         {
             _shoppingList.AddCategory(name);
             CollectionAssert.Contains(_shoppingList.GetCategories(), new Category(name));
+        }
+
+        [TestCase("bakery")]
+        public void AddExistingCategoryTest(string name)
+        {
+            _shoppingList.AddCategory(name);
+            Assert.Throws<CategoryAlreadyExistsException>(() => { _shoppingList.AddCategory(name); });
+        }
+
+        [TestCase("Clean Code", "Amazon")]
+        public void AddExistingProductTest(string name, string categoryName)
+        {
+            var category = _shoppingList.GetCategory(categoryName);
+            _shoppingList.AddProduct(category, name);
+            Assert.Throws<ProductAlreadyExistsException>(() => { _shoppingList.AddProduct(category, name); });
         }
 
         [TestCase("Vinted")]
