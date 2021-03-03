@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using NUnit.Framework;
 using ShoppingListApp.Entities;
 
@@ -55,7 +54,7 @@ namespace UnitTests
             _shoppingList.RemoveCategory(name);
             CollectionAssert.DoesNotContain(_shoppingList.GetCategories(), new Category(name));
         }
-        
+
         [TestCase("supermarket")]
         [TestCase("Amazon")]
         public void GetCategoryTest(string name)
@@ -106,7 +105,5 @@ namespace UnitTests
             CollectionAssert.DoesNotContain(_shoppingList.GetProductNames(oldCategory), name);
             CollectionAssert.Contains(_shoppingList.GetProductsNames(newCategory), name);
         }
-
-        
     }
 }
